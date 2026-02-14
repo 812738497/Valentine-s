@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharafat ❤️ Shoroni</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(-45deg,#ff4e50,#ff6f91,#ff9671,#ffc75f);background-size:400% 400%;animation:bg 12s ease infinite;overflow:hidden;color:white;text-align:center;}
+@keyframes bg{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+.card{width:400px;padding:35px;background:rgba(255,255,255,0.15);backdrop-filter:blur(15px);border-radius:25px;box-shadow:0 0 35px rgba(255,0,100,0.6);z-index:2;animation:fade 1.5s ease;}
+@keyframes fade{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+
+h1{font-family:'Great Vibes',cursive;font-size:42px;}
+.timer{margin:16px 0;font-size:14px;}
+button{padding:12px 28px;margin:10px;border:none;border-radius:30px;cursor:pointer;font-weight:bold;background:white;color:#ff4e50;transition:0.3s;}
+button:hover{transform:scale(1.1);background:#ff4e50;color:white;}
+.letter{display:none;margin-top:15px;font-size:15px;line-height:1.5;}
+.heart{position:absolute;font-size:20px;animation:float 6s linear infinite;}
+@keyframes float{0%{transform:translateY(0);}100%{transform:translateY(-100vh);}}
+.firework{position:absolute;width:5px;height:5px;background:white;border-radius:50%;opacity:0;}
+.music-control{margin-top:15px;padding:10px 22px;border-radius:25px;border:none;background:white;color:#ff4e50;cursor:pointer;font-weight:bold;}
+</style>
+</head>
+<body>
+<div class="card">
+    <h1>Sharafat Siam ❤️ Shoroni Tania</h1>
+    <p>Forever Together 💕</p>
+    <div class="timer" id="timer"></div>
+    <button onclick="showLetter()">Touch My Heart 💖</button>
+
+    <div class="letter" id="letter">
+        My Dear Shoroni 💖 <br><br>
+       ২৬শে মে ২০২৫ থেকে চিরকাল, তুমিই আমার সুখ, আমার শান্তি, আমার সবকিছু। আমি তোমাকে প্রতিদিন আরও বেশি করে ভালোবাসি।...................................  
+        Happy Valentine's Day 💘<br>
+        — Yours, Sharafat 💞
+    </div>
+
+    <button class="music-control" id="musicBtn">Tanu pakhi</button>
+</div>
+
+<audio id="bgMusic" autoplay loop>
+<source src="./audioclip173959847100025959_1158238755978179.mp4" type="audio/mp4">
+</audio>
+
+
+<script>
+// Live Timer
+const startDate = new Date("May 26, 2025 00:00:00").getTime();
+setInterval(()=>{
+    const now = new Date().getTime();
+    const diff = now - startDate;
+    const days = Math.floor(diff/(1000*60*60*24));
+    const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
+    const seconds = Math.floor((diff%(1000*60))/1000);
+    document.getElementById("timer").innerHTML=
+    "Together Since 26 May 2025 💕<br>"+days+" Days "+hours+" Hours "+minutes+" Minutes "+seconds+" Seconds";
+},1000);
+
+// Love Letter
+function showLetter(){ document.getElementById("letter").style.display="block"; }
+
+// Floating Hearts
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},6000);
+}
+setInterval(createHeart,300);
+
+// Fireworks
+function createFirework(){
+    const fw = document.createElement("div");
+    fw.classList.add("firework");
+    fw.style.left=Math.random()*100+"vw";
+    fw.style.top=Math.random()*50+"vh";
+    document.body.appendChild(fw);
+    fw.animate([
+        {opacity:1, transform:'scale(1)'},
+        {opacity:0, transform:'scale(5)'}
+    ], {duration:800, easing:'ease-out'});
+    setTimeout(()=>fw.remove(),800);
+}
+setInterval(createFirework,500);
+
+// Music Control
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+musicBtn.addEventListener("click", ()=>{
+    if(music.paused){ music.play(); musicBtn.innerText="Pause Music 🔊"; }
+    else{ music.pause(); musicBtn.innerText="Play Music 🎵"; }
+});
+</script>
+
+</body>
+</html>
